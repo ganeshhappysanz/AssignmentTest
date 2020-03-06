@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2020-03-05T12:10:33Z" name="Default suite" finished-at="2020-03-05T12:12:03Z" duration-ms="89458">
+    <groups>
+    </groups>
+    <test started-at="2020-03-05T12:10:33Z" name="Default test" finished-at="2020-03-05T12:12:03Z" duration-ms="89458">
+      <class name="testCases.TestCaseExecution">
+        <test-method is-config="true" signature="LaunchBrowser()[pri:0, instance:testCases.TestCaseExecution@5e4c8041]" started-at="2020-03-05T12:10:14Z" name="LaunchBrowser" finished-at="2020-03-05T12:10:33Z" duration-ms="19185" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchBrowser -->
+        <test-method signature="Test_Execution()[pri:0, instance:testCases.TestCaseExecution@5e4c8041]" started-at="2020-03-05T12:10:34Z" name="Test_Execution" finished-at="2020-03-05T12:12:03Z" duration-ms="89239" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Test_Execution -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:testCases.TestCaseExecution@5e4c8041]" started-at="2020-03-05T12:12:04Z" name="teardown" finished-at="2020-03-05T12:12:04Z" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- testCases.TestCaseExecution -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
