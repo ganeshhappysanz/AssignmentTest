@@ -123,7 +123,7 @@ public class TestCaseExecution extends BaseTest {
 		Start_Recording();
 		Grand_BrowserPermission();
 		Send_to_Email();
-		//Send_to_Email();
+		Send_to_Email();
 		
 		
 	}
