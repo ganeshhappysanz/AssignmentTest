@@ -1,13 +1,19 @@
 package testCases;
 
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,6 +24,7 @@ import commonFunctions.BaseTest;
 import pageElements.CompanyCreationPage;
 import pageElements.CreateAndRecordVideo;
 import pageElements.PlanPersonalizedPage;
+import pageElements.Recording;
 import pageElements.SendVideo2Email;
 import pageElements.SignUp_Page;
 
@@ -61,48 +68,42 @@ public class TestCaseExecution extends BaseTest {
 		CreateAndRecordVideo.Clickon_Create_Video.click();
 	}
 	
-	public void Add_Browser_Extesion()throws InterruptedException {
-		CreateAndRecordVideo.Clickon_Start_recording_button.click();
-		wait=new WebDriverWait(driver,30);
-		wait.until(ExpectedConditions.visibilityOfAllElements(CreateAndRecordVideo.ChromeMoelpopup));
-		CreateAndRecordVideo.Install_BrowserExtension.click();
+	public void Start_Recording()throws InterruptedException {
+		PageFactory.initElements(driver, Recording.class);
+		wait=new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfAllElements(Recording.Uncheck_Screen_Recording));
+		Recording.Uncheck_Screen_Recording.click();
 		
-		//Add Hippo video browser extension
-		Set<String> winSet2 = driver.getWindowHandles();
-		List<String> winList2 = new ArrayList<String>(winSet2);
-		String browserpermission = winList2.get(winList2.size() - 1);
-		driver.switchTo().window(browserpermission);
+		wait=new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfAllElements(Recording.Uncheck_mic));
+		Recording.Uncheck_mic.click();
 		
-		CreateAndRecordVideo.Add_Chrome_Extension.click();
-		Actions actions=new Actions(driver);
-		try {
-		wait=new WebDriverWait(driver,30);
-		wait.until(ExpectedConditions.alertIsPresent());
-		actions.sendKeys(Keys.TAB).click().build().perform();
-		actions.sendKeys(Keys.ENTER).click().build().perform();
-		}catch (TimeoutException e) {
-			// TODO: handle exception
-			
+		Recording.Clickon_Recording.click();
+	}
+		public void Grand_BrowserPermission()throws AWTException, InterruptedException {
+		Robot robot=new Robot();
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		Thread.sleep(2000);
+		robot.keyPress(KeyEvent.VK_TAB);
+		robot.keyRelease(KeyEvent.VK_TAB);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		
+		
+		
 		}
-		CreateAndRecordVideo.OkayExtension.click();
-		CreateAndRecordVideo.Clickon_Start_recording_button.click();
 		
 		
-	}
-		public void  Start_Screen_Recording()throws InterruptedException {	
-		//Start Recording
-		CreateAndRecordVideo.Clickon_Home_Menu.click();
-		CreateAndRecordVideo.Clickon_Sales_Menu.click();
-		CreateAndRecordVideo.Clickon_People_menu.click();
-		CreateAndRecordVideo.Clickon_Library_menu.click();
-		CreateAndRecordVideo.Clickon_campaings_menu.click();
-		CreateAndRecordVideo.Clickon_testimonial_menu.click();
-		CreateAndRecordVideo.Clickon_Stop_recording_button.click();
-				
-	}
+	
 		
-		public void Send_to_Email() {
-			PageFactory.initElements(driver, SendVideo2Email.class);
+		
+	public void Send_to_Email() {
+	        PageFactory.initElements(driver, SendVideo2Email.class);
 			SendVideo2Email.Videocampaignlink.click();
 			SendVideo2Email.Send_Email.click();
 			SendVideo2Email.addcontact.click();
@@ -114,14 +115,15 @@ public class TestCaseExecution extends BaseTest {
 	
 	
 	@Test
-	public void Test_Execution() throws InterruptedException {
+	public void Test_Execution() throws InterruptedException, AWTException {
 		User_SignUp();
 		Plan_And_Campaigns();
 		Create_Company();
 		Create_Video();
-		Add_Browser_Extesion();
-		Start_Screen_Recording();
+		Start_Recording();
+		Grand_BrowserPermission();
 		Send_to_Email();
+		//Send_to_Email();
 		
 		
 	}

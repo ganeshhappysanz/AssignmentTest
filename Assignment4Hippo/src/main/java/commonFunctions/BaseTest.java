@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeSuite;
 public class BaseTest {
 	
 	public static Properties properties=null;
-	public static WebDriver driver=null;
+	public static WebDriver driver;
 	
 	
 	public static Properties loadpropertyFile() throws IOException {
